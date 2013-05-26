@@ -1,0 +1,170 @@
+#menu {
+	color: White;
+	font: 9px Verdana, Arial, Helvetica, sans-serif;
+	width: 174px;
+}
+
+	#menu input {
+		position: relative;
+		left: 2%;
+	}
+
+	#menu a {
+		position: relative;
+		left: 5%;
+		top: 0px;
+		color: White;
+		text-decoration: none;
+		font: 11px Verdana, Arial, Helvetica, sans-serif;
+	}
+
+.infoTopItems {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFCC00;
+	font-weight: normal;
+}
+
+.infoTop {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.scroll {
+}
+
+.botonCambiarEstado {
+	background-color: #63605F;
+	color: #FDFDFD;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	width: 100%;
+}
+
+.tablaInfo th {
+	background: #63605F;
+	border: 0px;
+	font-weight: normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+}
+
+.tablaInfo td {
+	background: #A9A9A9;
+	border: 1px;
+	border-style:solid;
+	border-color:silver;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+}
+
+.infoArriba {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: none;
+	color: #FFFFFF;
+	background-color: #2B9AAD;
+	height: 22px;
+	border: none;
+}
+
+.boton {
+	background-color: #63605F;
+	color: #FDFDFD;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.letra {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/*--------------------Style Calendario-------------------------*/
+body {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: .8em;
+	}
+
+.dpDiv {
+	}
+
+.dpTable {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	color: #000000; /*#505050;*/
+	background-color: #C5C5C5; /*#2B9AAD;#ece9d8;*/
+	border: 1px solid #AAAAAA;
+	}
+
+.dpTR {
+	}
+
+.dpTitleTR {
+	}
+
+.dpDayTR {
+	}
+
+.dpTodayButtonTR {
+	}
+
+.dpTD {
+	cursor: pointer;
+	}
+
+.dpDayHighlightTD {
+	background-color: #C5C5C5;/*#CCCCCC; #35BDD5*/
+	border: 1px solid #AAAAAA;
+	cursor: pointer;
+	}
+
+.dpTitleTD {
+	}
+
+.dpButtonTD {
+	}
+
+.dpTodayButtonTD {
+	}
+
+.dpDayTD {
+	background-color: #C5C5C5; /*#35BDD5;#CCCCCC;*/
+	border: 1px solid #AAAAAA;
+	color: white;
+	}
+
+.dpTitleText {
+	font-size: 12px;
+	color: #000000;/*gray;*/
+	font-weight: bold;
+	}
+
+.dpDayHighlight {
+	color: #000000;/*4060ff;*/
+	font-weight: bold;
+	}
+
+.dpButton {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;/*gray;*/
+	background: #C5C5C5;/*#35BDD5;/*#d8e8ff;*/
+	font-weight: bold;
+	padding: 0px;
+	}
+
+.dpTodayButton {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;/*gray;*/
+	background: #C5C5C5;/*#35BDD5;/*#d8e8ff;*/
+	font-weight: bold;
+	}
+

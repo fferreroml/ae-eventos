@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2009 5:01:06 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.acreditaciones.core.bean.Acreditacion" table="acreditacion" schema="public">
+        <id name="idAcreditacion" type="int">
+            <column name="id_acreditacion" />
+            <generator class="native">
+				<param name="sequence">public.id_acreditacion</param>
+			</generator>
+        </id>
+        <many-to-one name="evento" class="com.acreditaciones.core.bean.Evento" fetch="join">
+            <column name="id_evento" />
+        </many-to-one>
+        <many-to-one name="asistente" class="com.acreditaciones.core.bean.Asistente" fetch="join">
+            <column name="id_asistente" />
+        </many-to-one>
+        
+        <property name="estadoAcreditacion" column="estado_acreditacion"
+			type="com.acreditaciones.core.bean.enums.HibEstadoAcreditacion" not-null="true" />
+            
+        <property name="urlImagen" type="string">
+            <column name="url_imagen" length="128" />
+        </property>
+        <property name="borrado" type="boolean">
+            <column name="borrado" not-null="true" />
+        </property>
+        <property name="usuarioInsert" type="string">
+            <column name="usuario_insert" length="20" />
+        </property>
+        <property name="fechaInsert" type="date">
+            <column name="fecha_insert" length="4" />
+        </property>
+        <property name="usuarioUpdate" type="string">
+            <column name="usuario_update" length="20" />
+        </property>
+        <property name="fechaUpdate" type="date">
+            <column name="fecha_update" length="4" />
+        </property>
+        <property name="mailEnviado" type="java.lang.Boolean">
+            <column name="mail_enviado" not-null="true" />
+        </property>
+        <property name="datamatrixGenerada" type="java.lang.Boolean">
+            <column name="datamatrix_generada" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
