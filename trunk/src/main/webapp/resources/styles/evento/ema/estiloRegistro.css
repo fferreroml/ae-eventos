@@ -1,0 +1,114 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	margin:0px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#333333;
+	background:url(../../../images/eventos/eCommerce/back_body.gif) top repeat-x;
+}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+
+#wrapper{
+	width:800px;
+	margin:auto;
+}
+#header{
+	width:780px;
+	height:107px;
+	padding-top:8px;
+	padding-left:10px;
+	padding-right:10px;
+	background:  url../../../images/eventos/eCommerce/back_header.gif) top left no-repeat;
+}
+#content{
+	width:750px;
+	padding-left:25px;
+	padding-right:25px;
+	padding-bottom:40px;
+	padding-top:40px;
+	background:url(../../../images/eventos/eCommerce/back_content.gif) top left repeat-y;
+}
+h1 {
+	font-size:16px;
+	text-transform:uppercase;
+	color: #067aae;
+	font-weight:bold;
+	border-bottom:#b3bbca 1px solid;
+	margin-left:20px;
+	padding-right:20px;
+	margin-bottom:30px;
+}
+
+.mensaje{
+	width:668px;
+	padding-left:20px;
+	padding-right:20px;
+	float:left;
+}
+
+.col{
+	width:334px;
+	padding-left:20px;
+	padding-right:20px;
+	float:left;
+}
+.col_100{
+	padding-left:20px;
+	padding-right:20px;
+}
+.col .input_box{
+	height:18px;
+	width:334px;
+	color:#333333;
+}
+.col select{
+	height:22px;
+	width:334px;
+	color:#333333;
+}
+.col .input_cod{
+	height:18px;
+	width:60px;
+}
+.col .input_muner{
+	height:18px;
+	width:150px;
+}
+.col .input_cel{
+	height:18px;
+	width:216px;
+}
+.clear{
+	clear:both;
+	padding-top:40px;
+	margin-left:20px;
+}
+.clear strong{
+	color:#FF0000;
+}
+.clear a{
+	color: #067aae;
+}
+.clear a:hover{
+	color: #0099FF;
+}
+
+#footer{
+	width:800px;
+	height:13px;
+	background:url(../../../images/eventos/eCommerce/back_footer.gif) top left no-repeat;
+}
+

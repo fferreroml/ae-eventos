@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 19, 2009 5:01:06 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.acreditaciones.core.bean.Asistente" table="asistente" schema="public">
+        <id name="idAsistente" type="int">
+            <column name="id_asistente" />
+            <generator class="native">
+				<param name="sequence">public.id_asistente</param>
+			</generator>
+        </id>
+        <property name="apellido" type="string">
+            <column name="apellido" length="180" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="180" not-null="true" />
+        </property>
+        
+        <property name="telefono" type="string">
+            <column name="telefono" length="50" not-null="true" />
+        </property>
+        <property name="celular" type="string">
+            <column name="celular" length="50" />
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="50" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="200" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="160" />
+        </property>
+        <property name="referencia" type="java.lang.Integer">
+            <column name="referencia" />
+        </property>
+        <property name="usuarioInsert" type="string">
+            <column name="usuario_insert" length="160" />
+        </property>
+        <property name="usuarioUpdate" type="string">
+            <column name="usuario_update" length="160" />
+        </property>
+        <property name="fechaInsert" type="date">
+            <column name="fecha_insert" length="4" not-null="true" />
+        </property>
+        <property name="fechaUpdate" type="date">
+            <column name="fecha_update" length="4" />
+        </property>
+        <property name="cargo" type="string">
+            <column name="cargo" length="160" not-null="true" />
+        </property>
+        <property name="compania" type="string">
+            <column name="compania" length="180" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="200" />
+        </property>
+        <property name="dni" type="string">
+            <column name="dni" length="10" />
+        </property>
+
+        <set name="acreditacions" inverse="true" lazy="true" table="acreditacion" fetch="select">
+            <key>
+                <column name="id_asistente" />
+            </key>
+            <one-to-many class="com.acreditaciones.core.bean.Acreditacion" />
+        </set>
+  
+    </class>
+</hibernate-mapping>

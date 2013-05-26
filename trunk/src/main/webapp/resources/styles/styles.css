@@ -1,0 +1,319 @@
+body{
+   background-image: url(../images/back_body.jpg);
+   background-position: top;
+   background-repeat: repeat-x;
+   margin: 0px;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 11px;
+   min-width: 990px;
+}
+.FullPage{
+   margin: 0px;
+   padding: 0px;
+   position: relative;
+   background-image: url(../images/back_fullpage.jpg);
+   background-position: top left;
+   background-repeat: no-repeat;
+   height: 200px;
+}
+.Header{
+   width: auto;
+   height: 160px;
+   margin-bottom: 40px;
+   position: relative; 
+   max-width: 1200px;
+}
+.Logo{
+   position: absolute;
+   left: 0px;
+   top: 0px;
+   width: 300px;
+   height: 155px;
+   background-image: url(../images/logo.png);
+   background-position: left top;
+   background-repeat: no-repeat;
+}
+.User{
+   position: absolute;
+   right: 19px;
+   top: 19px;
+   text-align: right;
+}
+.User .Name{
+   height: 31px;
+   line-height: 31px;
+   margin-right: 10px;
+   padding: 0px;
+   padding-right: 10px;
+   font-size: 13px;
+   font-weight: bold;
+   color: #d2d2d2;
+   background-image: url(../images/back_user.png);
+   background-position: right;
+   background-repeat: no-repeat;
+   float: left;
+}
+.User .Name .img{
+   height: 31px;
+   width: 9px;
+   float: left;
+   background-image: url(../images/back_user_1.png);
+   position: relative;
+}
+.User .Close{
+   height: 31px;
+   width: 35px;
+   background-image: url(../images/back_close_1.png);
+   background-repeat: no-repeat;
+   cursor: pointer;
+   float: left;
+}
+.User .Close:hover{
+   height: 31px;
+   width: 35px;
+   background-image: url(../images/back_close_2.png);
+}
+.WrapperMenu{
+   float: left;
+   position: relative;
+   width: 210px;
+}
+.Menu{
+   position: relative;
+   margin-left: 28px;
+   width: 181px;
+   float: left;
+   list-style: none;
+}
+.Menu ul{
+   margin: 0px;
+   margin-left: -36px;
+   #margin-left: 0px;
+   list-style: none;
+}
+.Menu ul li a{
+   margin: 0px;
+   font-size: 14px;
+   text-decoration: none;
+   color: #efefef;
+}
+.Menu ul li{
+   margin: 0px;
+   font-size: 14px;
+   text-decoration: none;
+   color: #efefef;
+   background-image: url(../images/back_li_1.png);
+   list-style: none;
+   width: 151px;
+   padding-left: 30px;
+   height: 33px;
+   line-height: 33px;
+   margin-bottom: 8px;
+   cursor: pointer;
+}
+.Menu ul li:hover{
+   background-image: url(../images/back_li_2.png);
+}
+.WrapperContent{
+   float: left;
+   position: relative;
+   #margin-left: 210px;
+}
+.Content{
+   position: relative;
+   float: left;
+   margin-left: 30px;
+   width: 749px;
+   background-image: url(../images/back_content.gif);
+   background-repeat: repeat-y;
+}
+.Content .ContentTop{
+   background-image: url(../images/back_content_top.gif);
+   background-position: top;
+   background-repeat: no-repeat;
+   width:  729px;
+   padding: 10px;
+   position: relative;
+}
+.Content .ContentFooter{
+   background-image: url(../images/back_content_footer.gif);
+   background-position: bottom;
+   background-repeat: no-repeat;
+   width: 749px;
+   height: 10px;
+   position: relative;
+}
+h1{
+   background-image: url(../images/line_title.gif);
+   background-repeat: repeat-x;
+   background-position: bottom;
+   margin: 0px;
+   padding-bottom: 3px;
+   margin-bottom: 10px;
+   margin-top: 20px;
+   text-transform: uppercase;
+   color: #607377;
+   font-size: 15px;
+}
+.LogoContent{
+   width: auto;
+   text-align: center;
+}
+.LogoContent img{
+   text-align: center;
+}
+.Advertent{
+   width: auto;
+   padding: 10px;
+   background-color: #fbfbfb;
+   border-bottom: solid 1px #d62353;
+   border-top: solid 1px #d62353;
+   font-size: 12px;
+   font-weight: bold;
+   color: #d62353;
+   text-align: center;
+}
+
+.Success{
+   background-image: url(../images/accept.png);
+   background-repeat: no-repeat;
+   background-position: 2px 4px;
+   width: auto;
+   padding: 10px;
+   padding-left: 58px;
+   background-color: #fbfbfb;
+   border-bottom: solid 1px #607377;
+   border-top: solid 1px #607377;
+   font-size: 12px;
+   font-weight: bold;
+   color: #607377;;
+   text-align: left;
+}
+
+.LogoLogin{
+   margin: auto;
+   margin-top: 130px;
+   height: 210px;
+   width: 270px;
+   margin-bottom: 50px;
+   position: relative;   
+}
+.InputLogin{
+   background-image: url(../images/back_campo.gif);
+   background-repeat: repeat-x;
+   height: 16px;
+   width: 190px;
+   border-top: solid 1px #bebebe;
+   border-left: solid 1px #bebebe;
+   border-bottom: solid 1px #f4f4f4;
+   border-right: solid 1px #f4f4f4;
+   line-height: 16px;
+   font-size: 11px;
+   color: #607377;
+}
+.ContentLogin{
+   color: #607377;
+   font-size: 12px;
+   width: 270px;
+   margin: auto;
+   text-align: center;
+}
+.list{
+   color: #607377;
+   padding-bottom: 3px;
+   text-align: left;
+   border: solid 0px #fff;
+   border-bottom: #d2d2d2 2px solid;
+}
+.list img a{
+   border: 0px #fff solid;
+}
+.list th{
+   background-color: #607377;
+   color: #efefef;
+   padding: 4px;
+   height: 20px;
+   font-weight: bold;
+}
+.list .even{
+   background: #efefef;
+   padding: 3px;
+}
+.list .old{
+   background: white;
+   padding: 3px;
+}
+.InputFiltro{
+   background-image: url(../images/back_campo.gif);
+   background-repeat: repeat-x;
+   height: 16px;
+   width: 160px;
+   border-top: solid 1px #bebebe;
+   border-left: solid 1px #bebebe;
+   border-bottom: solid 1px #f4f4f4;
+   border-right: solid 1px #f4f4f4;
+   line-height: 16px;
+   font-size: 11px;
+   color: #607377;
+}
+.BtnFiltro{
+   background-image: url(../images/btn.jpg);
+   border: solid 0px #ffffff;
+   width: 70px;
+   height: 20px;
+   cursor: pointer;
+   text-align: center;
+   font-size: 11px;
+   line-height: 20px;
+}
+.BoxLogin{
+   text-align: left;
+   font-size: 11px;
+   color: #acb5b7;
+}
+.BtnLogin{
+   background-image: url(../images/btn_ingresar.jpg);
+   border: solid 0px #ffffff;
+   width: 70px;
+   height: 20px;
+   cursor: pointer;
+}
+
+.division{
+	width: 100%;
+	height: 1px;
+	margin-bottom: 3px;
+	margin-top:3px;
+	background-color:#e8eff9 ;
+	min-height: 1px;
+	font-size:1px;
+	line-height:0;
+}
+
+.botonAcreditar {
+	background-image:url(../images/12-em-check.png);
+	cursor: pointer;
+	width:12px;
+	height:12px;
+}
+.botonRechazar {
+	background-image:url(../images/12-em-cross.png);
+	cursor: pointer;
+	width:12px;
+	height:12px;
+}
+
+.botonSeleccionar {
+	background-image:url(../images/12-em-down.png);
+	cursor: pointer;
+	width:12px;
+	height:12px;
+}
+
+.botonNUI {
+	background-image:url(../images/logo.jpg);
+	cursor: pointer;
+	width:180px;
+	height:80px;
+}
+
