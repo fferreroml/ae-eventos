@@ -3,11 +3,11 @@
 <struts-config>
 	<!-- Definicion de los forms de struts -->
 	<form-beans>
-	<form-bean name="homeForm" type="aeeventos.core.webapps.form.HomeForm" />
-	<form-bean name="acreditacionAdminForm" type="aeeventos.core.webapps.form.AcreditacionAdminForm" />
-	<form-bean name="acreditacionAdminEventoForm" type="aeeventos.core.webapps.form.AcreditacionAdminEventoForm" />
-	<form-bean name="registroEventoForm" type="aeeventos.core.webapps.form.RegistroEventoForm" />
-	<form-bean name="controlAccesoForm" type="aeeventos.core.webapps.form.ControlAccesoForm" />
+	<form-bean name="homeForm" type="com.aeeventos.core.webapps.form.HomeForm" />
+	<form-bean name="acreditacionAdminForm" type="com.aeeventos.core.webapps.form.AcreditacionAdminForm" />
+	<form-bean name="acreditacionAdminEventoForm" type="com.aeeventos.core.webapps.form.AcreditacionAdminEventoForm" />
+	<form-bean name="registroEventoForm" type="com.aeeventos.core.webapps.form.RegistroEventoForm" />
+	<form-bean name="controlAccesoForm" type="com.aeeventos.core.webapps.form.ControlAccesoForm" />
 	</form-beans>
 
 	<!--
@@ -26,14 +26,9 @@
 	<!-- Definicion de los actions o controladores de struts -->
 	<action-mappings>
 	
-		<action
-		 path="/Home"
-		 name="homeForm"
-		 type="aeeventos.core.webapps.action.HomeAction" 
-		 scope="request"
-		 validate="false" 
-		 parameter="method" 
-		 unknown="false">
+		<action path="/Home" name="homeForm"
+	type="com.aeeventos.core.webapps.action.HomeAction" scope="request"
+	validate="false" parameter="method" unknown="false">
 		<forward name="login" path="/WEB-INF/pages/home/login.jsp" />
 		<forward name="usrHome" path="/WEB-INF/pages/home/home.jsp" />
 		</action>
@@ -41,7 +36,7 @@
 		<action
 		 path="/AcreditacionAdmin"
 		 name="acreditacionAdminForm"
-		 type="aeeventos.core.webapps.action.AcreditacionAdminAction" 
+		 type="com.aeeventos.core.webapps.action.AcreditacionAdminAction" 
 		 scope="request"
 		 validate="false" 
 		 parameter="method" 
@@ -55,7 +50,7 @@
 		<action
 		 path="/AcreditacionAdminEvento"
 		 name="acreditacionAdminEventoForm"
-		 type="aeeventos.core.webapps.action.AcreditacionAdminEventoAction" 
+		 type="com.aeeventos.core.webapps.action.AcreditacionAdminEventoAction" 
 		 scope="request"
 		 validate="false" 
 		 parameter="method" 
@@ -69,7 +64,7 @@
 		<action
 		 path="/RegistroEvento"
 		 name="registroEventoForm"
-		 type="aeeventos.core.webapps.action.RegistroEventoAction" 
+		 type="com.aeeventos.core.webapps.action.RegistroEventoAction" 
 		 scope="request"
 		 validate="false" 
 		 parameter="method" 
@@ -80,7 +75,7 @@
 		<action
 		 path="/ControlAcceso"
 		 name="controlAccesoForm"
-		 type="aeeventos.core.webapps.action.ControlAccesoAction" 
+		 type="com.aeeventos.core.webapps.action.ControlAccesoAction" 
 		 scope="request"
 		 validate="false" 
 		 parameter="method" 
