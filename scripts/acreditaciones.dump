@@ -1,0 +1,319 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: acreditacion; Type: TABLE; Schema: public; Owner: root; Tablespace: 
+--
+
+CREATE TABLE acreditacion (
+    id_acreditacion integer NOT NULL,
+    id_evento integer,
+    id_asistente integer,
+    estado_acreditacion integer NOT NULL,
+    url_imagen character varying(128),
+    borrado boolean NOT NULL,
+    usuario_insert character varying(20),
+    fecha_insert date,
+    usuario_update character varying(20),
+    fecha_update date,
+    mail_enviado boolean NOT NULL,
+    datamatrix_generada boolean NOT NULL
+);
+
+
+ALTER TABLE public.acreditacion OWNER TO root;
+
+--
+-- Name: asistente; Type: TABLE; Schema: public; Owner: root; Tablespace: 
+--
+
+CREATE TABLE asistente (
+    id_asistente integer NOT NULL,
+    apellido character varying(180) NOT NULL,
+    nombre character varying(180) NOT NULL,
+    telefono character varying(50) NOT NULL,
+    celular character varying(50),
+    fax character varying(50),
+    direccion character varying(200),
+    ciudad character varying(160),
+    referencia integer,
+    usuario_insert character varying(160),
+    usuario_update character varying(160),
+    fecha_insert date NOT NULL,
+    fecha_update date,
+    cargo character varying(160) NOT NULL,
+    compania character varying(180) NOT NULL,
+    email character varying(200),
+    dni character varying(10)
+);
+
+
+ALTER TABLE public.asistente OWNER TO root;
+
+--
+-- Name: evento; Type: TABLE; Schema: public; Owner: root; Tablespace: 
+--
+
+CREATE TABLE evento (
+    id_evento integer NOT NULL,
+    usuario_admin integer NOT NULL,
+    nombre character varying(128) NOT NULL,
+    descripcion character varying(1024),
+    fecha date NOT NULL,
+    fecha_cierre date NOT NULL,
+    estado_evento integer NOT NULL,
+    borrado boolean NOT NULL,
+    pago boolean NOT NULL,
+    contexto character varying(50)
+);
+
+
+ALTER TABLE public.evento OWNER TO root;
+
+--
+-- Name: id_acreditacion; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE id_acreditacion
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_acreditacion OWNER TO root;
+
+--
+-- Name: id_asistente; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE id_asistente
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_asistente OWNER TO root;
+
+--
+-- Name: id_evento; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE id_evento
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_evento OWNER TO root;
+
+--
+-- Name: id_usuario; Type: SEQUENCE; Schema: public; Owner: root
+--
+
+CREATE SEQUENCE id_usuario
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.id_usuario OWNER TO root;
+
+--
+-- Name: usuario; Type: TABLE; Schema: public; Owner: root; Tablespace: 
+--
+
+CREATE TABLE usuario (
+    id_usuario integer NOT NULL,
+    nombre character varying(128) NOT NULL,
+    apellido character varying(128) NOT NULL,
+    correo character varying(40) NOT NULL,
+    direccion character varying(128),
+    password character varying(128),
+    borrado boolean NOT NULL,
+    user_name character varying(30),
+    rol integer NOT NULL
+);
+
+
+ALTER TABLE public.usuario OWNER TO root;
+
+--
+-- Data for Name: acreditacion; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY acreditacion (id_acreditacion, id_evento, id_asistente, estado_acreditacion, url_imagen, borrado, usuario_insert, fecha_insert, usuario_update, fecha_update, mail_enviado, datamatrix_generada) FROM stdin;
+2	1	2	3		f	\N	2013-05-22	\N	\N	f	f
+3	1	3	3		f	\N	2013-05-22	\N	\N	f	f
+4	1	4	3		f	\N	2013-05-22	\N	\N	f	f
+5	1	5	3		f	\N	2013-05-22	\N	\N	f	f
+6	1	6	3		f	\N	2013-05-22	\N	\N	f	f
+1	1	1	2		f	\N	2013-05-22	admin	2013-05-22	f	f
+\.
+
+
+--
+-- Data for Name: asistente; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY asistente (id_asistente, apellido, nombre, telefono, celular, fax, direccion, ciudad, referencia, usuario_insert, usuario_update, fecha_insert, fecha_update, cargo, compania, email, dni) FROM stdin;
+1	ferrero	franco	54-0351-155303895			Rio Ceballos	Cordoba	\N	\N	\N	2013-05-22	\N	ingeniero	neosur	fferrero@live.com.ar	31054196
+2	ferrero	franco	54-0351-155303895			Rio Ceballos	Cordoba	\N	\N	\N	2013-05-22	\N	ingeniero	neosur	fferrero@live.com.ar	31054196
+3	ferrero	franco	54-0351-155303895			Rio Ceballos	Cordoba	\N	\N	\N	2013-05-22	\N	ingeniero	neosur	fferrero@live.com.ar	31054196
+4	ferrero	franco	54-0351-155303895			Rio Ceballos	Cordoba	\N	\N	\N	2013-05-22	\N	ingeniero	neosur	fferrero@live.com.ar	31054196
+5	ferrero	franco	54-0351-2134123123			Rio Ceballos	Cordoba	\N	\N	\N	2013-05-22	\N	ingeniero	neosur	fferrero@live.com.ar	31054196
+6	ferrero	franco	54-0351-2134123123			Rio Ceballos	Cordoba	\N	\N	\N	2013-05-22	\N	ingeniero	neosur	fferrero@live.com.ar	31054196
+\.
+
+
+--
+-- Data for Name: evento; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY evento (id_evento, usuario_admin, nombre, descripcion, fecha, fecha_cierre, estado_evento, borrado, pago, contexto) FROM stdin;
+1	2	ema	sdfg	2013-05-22	2014-05-22	1	f	f	/ema
+\.
+
+
+--
+-- Name: id_acreditacion; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('id_acreditacion', 6, true);
+
+
+--
+-- Name: id_asistente; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('id_asistente', 6, true);
+
+
+--
+-- Name: id_evento; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('id_evento', 1, false);
+
+
+--
+-- Name: id_usuario; Type: SEQUENCE SET; Schema: public; Owner: root
+--
+
+SELECT pg_catalog.setval('id_usuario', 1, false);
+
+
+--
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+COPY usuario (id_usuario, nombre, apellido, correo, direccion, password, borrado, user_name, rol) FROM stdin;
+2	admin	admin	admin	\N	827ccbeea8a706c4c34a16891f84e7b	f	admin2	1
+1	admin	admin	admin@franco.com	\N	827ccbeea8a706c4c34a16891f84e7b	f	admin	0
+\.
+
+
+--
+-- Name: acreditacion_pkey; Type: CONSTRAINT; Schema: public; Owner: root; Tablespace: 
+--
+
+ALTER TABLE ONLY acreditacion
+    ADD CONSTRAINT acreditacion_pkey PRIMARY KEY (id_acreditacion);
+
+
+--
+-- Name: asistente_pkey; Type: CONSTRAINT; Schema: public; Owner: root; Tablespace: 
+--
+
+ALTER TABLE ONLY asistente
+    ADD CONSTRAINT asistente_pkey PRIMARY KEY (id_asistente);
+
+
+--
+-- Name: evento_pkey; Type: CONSTRAINT; Schema: public; Owner: root; Tablespace: 
+--
+
+ALTER TABLE ONLY evento
+    ADD CONSTRAINT evento_pkey PRIMARY KEY (id_evento);
+
+
+--
+-- Name: usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: root; Tablespace: 
+--
+
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- Name: fkb307e115f69e8196; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY evento
+    ADD CONSTRAINT fkb307e115f69e8196 FOREIGN KEY (usuario_admin) REFERENCES usuario(id_usuario);
+
+
+--
+-- Name: fkd850724c69046924; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY acreditacion
+    ADD CONSTRAINT fkd850724c69046924 FOREIGN KEY (id_evento) REFERENCES evento(id_evento);
+
+
+--
+-- Name: fkd850724c9f195eaa; Type: FK CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY acreditacion
+    ADD CONSTRAINT fkd850724c9f195eaa FOREIGN KEY (id_asistente) REFERENCES asistente(id_asistente);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
