@@ -24,9 +24,9 @@
 		<property name="hibernate.show_sql">true</property>
 
 		<!--  Mapeo de los beans -->
-		<mapping resource="aeeventos/core/hbm/Asistente.hbm.xml" />
-		<mapping resource="aeeventos/core/hbm/Usuario.hbm.xml" />
-		<mapping resource="aeeventos/core/hbm/Acreditacion.hbm.xml" />
-		<mapping resource="aeeventos/core/hbm/Evento.hbm.xml" />
+		<mapping resource="com/aeeventos/core/hbm/Asistente.hbm.xml" />
+		<mapping resource="com/aeeventos/core/hbm/Usuario.hbm.xml" />
+		<mapping resource="com/aeeventos/core/hbm/Acreditacion.hbm.xml" />
+		<mapping resource="com/aeeventos/core/hbm/Evento.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

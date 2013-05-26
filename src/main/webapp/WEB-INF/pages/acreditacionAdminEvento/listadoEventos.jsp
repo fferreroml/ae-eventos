@@ -92,13 +92,13 @@
 
 				<display:column 
 					style="width: 15%;height:18px;" 
-					title="Fecha Inicio" property="fecha" decorator="com.acreditaciones.util.ConvertirFecha" >
+					title="Fecha Inicio" property="fecha" decorator="com.aeeventos.util.ConvertirFecha" >
 
 				</display:column>
 				
 					<display:column 
 					style="width: 15%;height:18px;"
-					title="Fecha Cierre" property="fechaCierre" decorator="com.acreditaciones.util.ConvertirFecha" >
+					title="Fecha Cierre" property="fechaCierre" decorator="com.aeeventos.util.ConvertirFecha" >
 
 				</display:column>
     
