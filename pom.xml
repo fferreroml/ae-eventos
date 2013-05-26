@@ -32,11 +32,6 @@
 		<dependency>
 			<groupId>displaytag</groupId>
 			<artifactId>displaytag</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>displaytag</groupId>
-			<artifactId>displaytag</artifactId>
 			<version>1.2</version>
 		</dependency>
 		<dependency>
@@ -44,16 +39,10 @@
 			<artifactId>struts-el</artifactId>
 			<version>1.2.9</version>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.neosur</groupId>
-			<artifactId>mailSender</artifactId>
-			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.neosur</groupId>
@@ -80,6 +69,16 @@
 			<artifactId>urlrewrite</artifactId>
 			<version>2.5.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>     
 	</dependencies>
 	<repositories>
 		<repository>
