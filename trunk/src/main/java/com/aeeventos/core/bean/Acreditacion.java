@@ -182,9 +182,9 @@ public class Acreditacion implements java.io.Serializable {
 		AcreditacionHome.getInstance().Update(this);
 	}
 
-	public static void mailEnviado(Acreditacion a) {
-		a.setMailEnviado(true);
-		AcreditacionHome.getInstance().Update(a);
+	public void mailEnviado() {
+		this.setMailEnviado(true);
+		AcreditacionHome.getInstance().Update(this);
 	}
 
 	/**
@@ -193,9 +193,9 @@ public class Acreditacion implements java.io.Serializable {
 	 *            que vamos a actualizar
 	 */
 
-	public static void datamatrixGenerada(Acreditacion acreditacion) {
-		acreditacion.setDatamatrixGenerada(new Boolean(true));
-		AcreditacionHome.getInstance().Update(acreditacion);
+	public  void datamatrixGenerada() {
+		this.setDatamatrixGenerada(true);
+		AcreditacionHome.getInstance().Update(this);
 
 	}
 
@@ -213,5 +213,9 @@ public class Acreditacion implements java.io.Serializable {
 	public Acreditacion validarAcceso(Acreditacion acreditacion)
 	{
 		return AcreditacionHome.getInstance().validarAcceso(acreditacion);
+	}
+
+	public String getUrlImagenDatamatrix() {
+		return this.evento.getNombre().concat("-").concat(this.asistente.getDni()).concat(".png");
 	}
 }

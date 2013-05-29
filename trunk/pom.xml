@@ -45,11 +45,6 @@
 			<version>2.4</version>
 		</dependency>
 		<dependency>
-			<groupId>com.neosur</groupId>
-			<artifactId>datamatrix</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
 			<version>3.2.7.ga</version>
@@ -70,6 +65,11 @@
 			<version>2.5.2</version>
 		</dependency>
 		<dependency>
+		<groupId>com.java4less</groupId>
+		<artifactId>rbarcode</artifactId>
+		<version>2.0.0</version>
+		</dependency>
+			<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
 			<version>1.7</version>
@@ -78,7 +78,7 @@
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
-		</dependency>     
+		</dependency>  
 	</dependencies>
 	<repositories>
 		<repository>

@@ -6,6 +6,7 @@ public class DatamatrixEmail extends Email {
 
 	public DatamatrixEmail() {
 		this.setTemplate("invitacion.vm");
+		this.setSubject("Invitacion a evento");
 	}
 	
 	public String getDatamatrixPath() {
