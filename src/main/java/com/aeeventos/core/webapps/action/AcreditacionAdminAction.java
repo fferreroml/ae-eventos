@@ -1,17 +1,12 @@
 package com.aeeventos.core.webapps.action;
 
-import java.awt.Color;
-import java.util.Date;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-
 
 import com.aeeventos.core.bean.Acreditacion;
 import com.aeeventos.core.bean.Asistente;
@@ -22,17 +17,7 @@ import com.aeeventos.core.bean.enums.EstadoEventoEnum;
 import com.aeeventos.core.thread.ThreadNotifications;
 import com.aeeventos.core.webapps.action.security.SecuredDispatchAction;
 import com.aeeventos.core.webapps.form.AcreditacionAdminForm;
-import com.neosur.datamatrix.bean.Datamatrix;
-import com.neosur.datamatrix.bean.EncodingMode;
-import com.neosur.datamatrix.bean.ImageType;
-import com.neosur.datamatrix.bean.PreferredFormat;
-import com.neosur.datamatrix.exception.DatamatrixException;
-import com.neosur.datamatrix.generation.DatamatrixGenerationJava4Less;
-import com.neosur.mailSender.bean.Email;
-import com.neosur.mailSender.bean.MailHtmlTemplate;
-import com.neosur.mailSender.exception.MailException;
-import com.neosur.mailSender.send.IMailSender;
-import com.neosur.mailSender.send.MailSender;
+import com.aeeventos.util.AcreditacionesMailGenerator;
 
 public class AcreditacionAdminAction extends SecuredDispatchAction {
 
@@ -81,9 +66,8 @@ public class AcreditacionAdminAction extends SecuredDispatchAction {
 
 		if (acreditacionesForm.getEstadoFiltro() != null
 				&& !acreditacionesForm.getEstadoFiltro().equals("-1")) {
-			filter
-					.setEstadoAcreditacion(EstadoAcreditacionEnum.values()[Integer
-							.parseInt(acreditacionesForm.getEstadoFiltro())]);
+			filter.setEstadoAcreditacion(EstadoAcreditacionEnum.values()[Integer
+					.parseInt(acreditacionesForm.getEstadoFiltro())]);
 		} else {
 			filter.setEstadoAcreditacion(null);
 		}
@@ -117,11 +101,13 @@ public class AcreditacionAdminAction extends SecuredDispatchAction {
 		try {
 			Acreditacion acreditacion = Acreditacion.findById(idAcreditacion);
 			if (estado.equalsIgnoreCase("aprobar")) {
-				acreditacion.cambiarEstado(EstadoAcreditacionEnum.ACREDITADO,
+				acreditacion.cambiarEstado(
+						EstadoAcreditacionEnum.ACREDITADO,
 						(Usuario) request.getSession().getAttribute(
 								"AcreditacionesUser"));
 			} else {
-				acreditacion.cambiarEstado(EstadoAcreditacionEnum.RECHAZADA,
+				acreditacion.cambiarEstado(
+						EstadoAcreditacionEnum.RECHAZADA,
 						(Usuario) request.getSession().getAttribute(
 								"AcreditacionesUser"));
 
@@ -170,49 +156,19 @@ public class AcreditacionAdminAction extends SecuredDispatchAction {
 			return mapping.findForward("generalError");
 		}
 
-		String contexto = request.getSession().getServletContext().getRealPath(
-				"/template/");
+		String contexto = request.getSession().getServletContext()
+				.getRealPath("");
 
-		/*
-		 * Properties donde se encuentra la carpeta donde se guardan las
-		 * imagenes para cada evento
-		 */
-
-		ResourceBundle resourceDatamatrix = ResourceBundle
-				.getBundle("datamatrix");
-
-		String contextoImagenes = ("http://" + request.getServerName() + ":"
-				+ request.getServerPort() + request.getContextPath()
-				+ resourceDatamatrix.getString("evento.imagenes.ubicacion") + evento
-				.getContexto());
-
-		/*
-		 * Obtengo la unicacion de la imagen, obtenemos del properties la
-		 * ubicacion donde se guardan todos los eventosy del
-		 * evento.getContexto() el nombre de la carpeta para ese evento
-		 */
-		String contextoEvento = request.getSession().getServletContext()
-				.getRealPath(
-						resourceDatamatrix
-								.getString("evento.imagenes.ubicacion")
-								+ evento.getContexto() + "/datamatrix/");
-		/*
-		 * creamos el hilo de ejecucion de las notificaciones parametros: la
-		 * lista de los acreditados, string contexto
-		 */
-
-		
-		if(evento.getEstadoEvento().getValor()==EstadoEventoEnum.CERRADO.getValor() ||
-				evento.getEstadoEvento().getValor()==EstadoEventoEnum.PUBLICADO.getValor())
-		{
+		if (evento.getEstadoEvento().getValor() == EstadoEventoEnum.CERRADO
+				.getValor()
+				|| evento.getEstadoEvento().getValor() == EstadoEventoEnum.PUBLICADO
+						.getValor()) {
 			Thread hilo = new Thread(new ThreadNotifications(listaAcreditado,
-					contexto, contextoImagenes, contextoEvento));
+					contexto));
 			hilo.start();
 
 			return mapping.findForward("envioEmailOK");
-		}
-		else
-		{
+		} else {
 			return mapping.findForward("envioEmailInvalido");
 		}
 
@@ -220,16 +176,16 @@ public class AcreditacionAdminAction extends SecuredDispatchAction {
 
 	public ActionForward onEnviarMail(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		int idEvento = Integer.parseInt(request.getParameter("evento"));
+		//int idEvento = Integer.parseInt(request.getParameter("evento"));
 		int idAcreditacion = Integer.parseInt(request
 				.getParameter("acreditacion"));
 
-		Evento evt = new Evento();
-		Acreditacion acred = new Acreditacion();
+		String contexto = request.getSession().getServletContext()
+				.getRealPath("");
+		Acreditacion acreditacion = new Acreditacion();
 
 		try {
-			evt = Evento.findById(idEvento);
-			acred = Acreditacion.findById(idAcreditacion);
+			acreditacion = Acreditacion.findById(idAcreditacion);
 		} catch (RuntimeException e1) {
 
 			e1.printStackTrace();
@@ -238,170 +194,14 @@ public class AcreditacionAdminAction extends SecuredDispatchAction {
 			return mapping.findForward("generalError");
 		}
 
-		try {
-			sendMail(acred, getContextoImages(request, evt), getContexto(
-					request, evt), getContextoEvento(request, evt));
-		}
+		boolean emailSentOK = AcreditacionesMailGenerator.mailGenerator(
+				acreditacion, contexto);
 
-		catch (MailException e) {
-
+		if (emailSentOK) {
+			return mapping.findForward("envioEmailOK");
+		} else {
 			return mapping.findForward("mailError");
-		} catch (DatamatrixException e) {
-			return mapping.findForward("generalError");
 		}
-
-		return mapping.findForward("envioEmailOK");
-	}
-
-	private void sendMail(Acreditacion acreditacion, String contextoImages,
-			String contexto, String contextoEvento) throws MailException,
-			DatamatrixException {
-
-		Asistente asistente = acreditacion.getAsistente();
-		ResourceBundle resourceMail = ResourceBundle.getBundle("mail");
-
-		try {
-			if (!acreditacion.isDatamatrixGenerada())
-				generarDataMatrix(acreditacion, contextoImages);
-		} catch (DatamatrixException de) {
-			throw de;
-		}
-
-		Email email = new Email();
-		// Agregamos las direcciones de email correspondientes
-		email.addRecipient(asistente.getEmail());
-		email.setFrom("mail.smtp.from");
-		// Se puede agregar destinatarios con copias
-
-		// Texto a reamplzar en la personalización
-		email.setTo(asistente.getNombreCompleto());
-
-		MailHtmlTemplate template = new MailHtmlTemplate();
-		template.getHtmlReplacements().put("$CONTEXT", contextoEvento);
-		template.getHtmlReplacements().put("$ASISTENTE",
-				asistente.getNombreCompleto());
-
-		template.getHtmlReplacements().put("$EVENTO",
-				acreditacion.getEvento().getNombre());
-
-		template.getHtmlReplacements().put(
-				"$DATAMATRIX",
-				contextoEvento + "/datamatrix/"
-						+ acreditacion.getAsistente().getDni() + ".jpg");
-
-		// Datos estaticos del mail
-
-		email.setSenderName(resourceMail.getString("mail.html.senderName"));
-		email.setSentDate(new Date());
-		email.setSubject(resourceMail
-				.getString("mail.html.subject.acreditacion"));
-
-		// Url donde esta el html a enviar
-		template.setUrlHtmlTemplate(contexto + "/"
-				+ resourceMail.getString("mail.html.template.acreditacion"));
-
-		email.setTemplate(template);
-
-		// Envio de mail propieamente dicho
-
-		try {
-			IMailSender sender = new MailSender();
-			sender.sendMail(email);
-			Acreditacion.mailEnviado(acreditacion);
-		} catch (MailException e) {
-			throw e;
-		}
-
-	}
-
-	private String getContexto(HttpServletRequest request, Evento evento) {
-		String contexto = request.getSession().getServletContext().getRealPath(
-				"/template/");
-		return contexto;
-
-	}
-
-	private String getContextoImages(HttpServletRequest request, Evento evento) {
-
-		ResourceBundle resourceDatamatrix = ResourceBundle
-				.getBundle("datamatrix");
-
-		String contextoImagenes = request.getSession().getServletContext()
-				.getRealPath(
-						resourceDatamatrix
-								.getString("evento.imagenes.ubicacion")
-								+ evento.getContexto() + "/datamatrix/");
-
-		return contextoImagenes;
-
-	}
-
-	private String getContextoEvento(HttpServletRequest request, Evento evento) {
-		ResourceBundle resourceDatamatrix = ResourceBundle
-				.getBundle("datamatrix");
-
-		/*
-		 * Obtengo la unicacion de la imagen, obtenemos del properties la
-		 * ubicacion donde se guardan todos los eventosy del
-		 * evento.getContexto() el nombre de la carpeta para ese evento
-		 */
-		String contextoEvento = ("http://" + request.getServerName() + ":"
-				+ request.getServerPort() + request.getContextPath()
-				+ resourceDatamatrix.getString("evento.imagenes.ubicacion") + evento
-				.getContexto());
-
-		return contextoEvento;
-	}
-
-	private void generarDataMatrix(Acreditacion acreditacion,
-			String contextoEvento) throws DatamatrixException, RuntimeException {
-
-		DatamatrixGenerationJava4Less dMatrixGeneration = new DatamatrixGenerationJava4Less();
-		Datamatrix dataMatrix = new Datamatrix();
-
-		ResourceBundle resourceDatamatrix = ResourceBundle
-				.getBundle("datamatrix");
-		dataMatrix.setBackground(Color.white);
-		dataMatrix.setHeight(200);
-		dataMatrix.setWidth(200);
-		dataMatrix.setForeground(Color.black);
-		dataMatrix.setImageType(ImageType.JPG);
-		dataMatrix.setImagePath(contextoEvento);
-		dataMatrix.setPreferredFormat(PreferredFormat.C18x18);
-		dataMatrix.setEncodingMode(EncodingMode.ASCII);
-		dataMatrix.setProccessTilde(false);
-		dataMatrix.setMargin(18);
-		dataMatrix.setAccessImage(false);
-		dataMatrix.setAccessImage(Boolean.parseBoolean(resourceDatamatrix
-				.getString("datamatrix.isAccessImage")));
-
-		if (dataMatrix.isAccessImage()) {
-			dataMatrix.setAccessImagePath(resourceDatamatrix
-					.getString("datamatrix.AccessImagepath"));
-			dataMatrix.setCentrar(true);
-		}
-
-		try {
-
-			dataMatrix.setDataToEncode(acreditacion.getAsistente().getDni());
-			dataMatrix.setName("/" + acreditacion.getAsistente().getDni());
-
-			acreditacion.setUrlImagen(acreditacion.getAsistente().getDni()
-					+ "." + dataMatrix.getImageType().getExtencion());
-			dMatrixGeneration.generateDatamatrix(dataMatrix);
-			Acreditacion.datamatrixGenerada(acreditacion);
-
-		} catch (DatamatrixException e) {
-
-			throw new DatamatrixException(
-					"Error al generar datamatrix para el asistente: "
-							+ acreditacion.getAsistente().getNombreCompleto(),
-					e);
-
-		} catch (RuntimeException e) {
-			throw e;
-		}
-
 	}
 
 	public ActionForward onCambiarEstadoEvento(ActionMapping mapping,

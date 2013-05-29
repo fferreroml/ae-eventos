@@ -1,6 +1,5 @@
 package com.aeeventos.core.webapps.action;
 
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,18 +13,14 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 import org.hibernate.exception.ConstraintViolationException;
 
-
 import com.aeeventos.core.bean.Acreditacion;
 import com.aeeventos.core.bean.Asistente;
 import com.aeeventos.core.bean.Evento;
 import com.aeeventos.core.bean.enums.EstadoAcreditacionEnum;
 import com.aeeventos.core.bean.enums.EstadoEventoEnum;
 import com.aeeventos.core.webapps.form.RegistroEventoForm;
-import com.neosur.mailSender.bean.Email;
-import com.neosur.mailSender.bean.MailHtmlTemplate;
-import com.neosur.mailSender.exception.MailException;
-import com.neosur.mailSender.send.IMailSender;
-import com.neosur.mailSender.send.MailSender;
+
+
 
 public class RegistroEventoAction extends DispatchAction {
 
@@ -202,39 +197,38 @@ public class RegistroEventoAction extends DispatchAction {
 	 */
 
 	private void sendMailRegistro(Acreditacion acreditacion,
-			String contextoImages, String contexto, String contextoEvento)
-			throws MailException {
+			String contextoImages, String contexto, String contextoEvento){
 
-		Asistente asistente = acreditacion.getAsistente();
-		ResourceBundle resourceMail = ResourceBundle.getBundle("mail");
-		Email email = new Email();
-		// Agregamos las direcciones de email correspondientes
-		email.addRecipient(asistente.getEmail());
-		email.setFrom("mail.smtp.from");
-		// Se puede agregar destinatarios con copias
-
-		// Texto a reamplzar en la personalización
-		email.setTo(asistente.getNombreCompleto());
-
-		MailHtmlTemplate template = new MailHtmlTemplate();
-		template.getHtmlReplacements().put("$CONTEXT", contextoEvento);
-		template.getHtmlReplacements().put("$ASISTENTE",
-				asistente.getNombreCompleto());
-
-		template.getHtmlReplacements().put("$EVENTO",
-				acreditacion.getEvento().getNombre());
-
-		// Datos estaticos del mail
-
-		email.setSenderName(resourceMail.getString("mail.html.senderName"));
-		email.setSentDate(new Date());
-		email.setSubject(resourceMail.getString("mail.html.subject.solicitud"));
-
-		// Url donde esta el html a enviar
-		template.setUrlHtmlTemplate(contexto + "/"
-				+ resourceMail.getString("mail.html.template.solicitud"));
-
-		email.setTemplate(template);
+//		Asistente asistente = acreditacion.getAsistente();
+//		ResourceBundle resourceMail = ResourceBundle.getBundle("mail");
+//		Email email = new Email();
+//		// Agregamos las direcciones de email correspondientes
+//		email.addRecipient(asistente.getEmail());
+//		email.setFrom("mail.smtp.from");
+//		// Se puede agregar destinatarios con copias
+//
+//		// Texto a reamplzar en la personalización
+//		email.setTo(asistente.getNombreCompleto());
+//
+//		MailHtmlTemplate template = new MailHtmlTemplate();
+//		template.getHtmlReplacements().put("$CONTEXT", contextoEvento);
+//		template.getHtmlReplacements().put("$ASISTENTE",
+//				asistente.getNombreCompleto());
+//
+//		template.getHtmlReplacements().put("$EVENTO",
+//				acreditacion.getEvento().getNombre());
+//
+//		// Datos estaticos del mail
+//
+//		email.setSenderName(resourceMail.getString("mail.html.senderName"));
+//		email.setSentDate(new Date());
+//		email.setSubject(resourceMail.getString("mail.html.subject.solicitud"));
+//
+//		// Url donde esta el html a enviar
+//		template.setUrlHtmlTemplate(contexto + "/"
+//				+ resourceMail.getString("mail.html.template.solicitud"));
+//
+//		email.setTemplate(template);
 
 		// Envio de mail propieamente dicho
 
